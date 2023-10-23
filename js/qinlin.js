@@ -22,6 +22,9 @@
  hostname = expire.vanemu.com
 
  *******************************/
+body = $response.body.replace("{\"data\":{\"effectiveStartTime\":null,\"effectiveEndTime\":null,\"orderNo\":null,\"productName\":null,\"status\":2},\"message\":\"success\",\"code\":0}", "200");
+
+$done({body});
 
 body = $response.body;
 body = {
