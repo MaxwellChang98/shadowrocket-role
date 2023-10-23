@@ -23,9 +23,8 @@
 
  *******************************/
 
-
-let obj = JSON.parse($response.body);
-obj = {
+body = $response.body;
+body = {
     "data": {
         "effectiveStartTime": "2023-10-21 00:00:00",
         "effectiveEndTime": "2028-10-21 00:00:00",
@@ -36,4 +35,4 @@ obj = {
     "message": "success",
     "code": 0
 };
-$done({body: JSON.stringify(obj)});
+$done({body});
