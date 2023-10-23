@@ -22,9 +22,7 @@
  hostname = expire.vanemu.com
 
  *******************************/
-/*body = $response.body.replace("401", "200").replace(/\"group_is_pro":\w+/g, '\"group_is_pro":true')
 
-$done({body});*/
 
 let obj = JSON.parse($response.body);
 obj = {
