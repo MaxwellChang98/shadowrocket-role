@@ -1,7 +1,7 @@
 #!name=亲邻会员
 #!desc=亲邻会员
 [Script]
-亲邻会员=type=http-response,pattern=^https://mallapi2.qinlinkeji.com/ql-wearables/apple/iap/checkUserStatus$,requires-body=1,script-path=https://raw.githubusercontent.com/JackZhangMax/shadowrocket-role/main/js/qinlin.js
+亲邻会员=type=http-response,pattern=^https\:\/\/mallapi2\.qinlinkeji\.com\/ql\-wearables\/apple\/iap\/checkUserStatus$,requires-body=1,script-path=https://raw.githubusercontent.com/JackZhangMax/shadowrocket-role/main/js/qinlin.js
 [MITM]
 hostname= %APPEND% mallapi2.qinlinkeji.com
 
