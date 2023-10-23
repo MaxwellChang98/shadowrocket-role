@@ -22,11 +22,11 @@
  hostname = expire.vanemu.com
 
  *******************************/
-body = $response.body.replace("401", "200").replace(/\"group_is_pro":\w+/g, '\"group_is_pro":true')
+/*body = $response.body.replace("401", "200").replace(/\"group_is_pro":\w+/g, '\"group_is_pro":true')
 
-$done({body});
+$done({body});*/
 
-/*let obj = JSON.parse($response.body);
+let obj = JSON.parse($response.body);
 obj = {
     "data": {
         "effectiveStartTime": "2023-10-21 00:00:00",
@@ -38,4 +38,4 @@ obj = {
     "message": "success",
     "code": 0
 };
-$done({body: JSON.stringify(obj)});*/
+$done({body: JSON.stringify(obj)});
