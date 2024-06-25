@@ -1280,7 +1280,7 @@
 				"tag": "geosite-anti-ad",
 				"type": "remote",
 				"format": "binary",
-				"url": "https://github.com/srk24/profile/raw/master/sing/ruleset/anti_ad.srs",
+				"url": "https://testingcf.jsdelivr.net/gh/srk24/profile/raw/master/sing/ruleset/anti_ad.srs",
 				"download_detour": "direct"
 			},
 			{
