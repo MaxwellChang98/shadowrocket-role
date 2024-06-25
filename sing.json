@@ -1,0 +1,1295 @@
+{
+	"log": {
+		"level": "info",
+		"timestamp": true
+	},
+	"experimental": {
+		"clash_api": {
+			"external_controller": "127.0.0.1:9090",
+			"external_ui": "ui",
+			"secret": "",
+			"external_ui_download_url": "https://mirror.ghproxy.com/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
+			"external_ui_download_detour": "direct",
+			"default_mode": "rule"
+		},
+		"cache_file": {
+			"enabled": true,
+			"store_fakeip": true
+		}
+	},
+	"dns": {
+		"fakeip": {
+			"enabled": true,
+			"inet4_range": "198.18.0.0/15",
+			"inet6_range": "fc00::/18"
+		},
+		"servers": [
+			{
+				"tag": "google",
+				"address": "https://8.8.8.8/dns-query",
+				"detour": "Proxy"
+			},
+			{
+				"tag": "tx",
+				"address": "https://120.53.53.53/dns-query",
+				"detour": "direct"
+			},
+			{
+				"tag": "fakeip",
+				"address": "fakeip"
+			},
+			{
+				"tag": "block",
+				"address": "rcode://success"
+			}
+		],
+		"rules": [
+			{
+				"rule_set": "geosite-anti-ad",
+				"server": "block"
+			},
+			{
+				"rule_set": "geosite-category-ads-all",
+				"server": "block"
+			},
+			{
+				"outbound": "any",
+				"server": "tx",
+				"disable_cache": true
+			},
+			{
+				"rule_set": "geosite-cn",
+				"server": "tx"
+			},
+			{
+				"clash_mode": "direct",
+				"server": "tx"
+			},
+			{
+				"clash_mode": "global",
+				"server": "google"
+			},
+			{
+				"inbound": "tun",
+				"query_type": [
+					"A",
+					"AAAA"
+				],
+				"server": "fakeip",
+				"rewrite_ttl": 1
+			},
+			{
+				"rule_set": "geosite-geolocation-!cn",
+				"server": "google"
+			}
+		],
+		"independent_cache": true,
+		"strategy": "prefer_ipv4"
+	},
+	"inbounds": [
+		{
+			"tag": "tun",
+			"type": "tun",
+			"inet4_address": "172.19.0.0/30",
+			"inet6_address": "fdfe:dcba:9876::0/126",
+			"stack": "system",
+			"auto_route": true,
+			"sniff": true,
+			"platform": {
+				"http_proxy": {
+					"enabled": true,
+					"server": "127.0.0.1",
+					"server_port": 7890
+				}
+			}
+		},
+		{
+			"tag": "mixed",
+			"type": "mixed",
+			"listen": "127.0.0.1",
+			"listen_port": 7890,
+			"sniff": true
+		}
+	],
+	"outbounds": [
+		{
+			"tag": "Proxy",
+			"type": "selector",
+			"outbounds": [
+				"auto",
+				"direct",
+				"🇸🇬 新加坡-SG-1-流量倍率:1.0",
+				"🇸🇬 新加坡-SG-2-流量倍率:1.0",
+				"🇭🇰 香港-IPLC-HK-BETA1-流量倍率:1.0",
+				"🇭🇰 香港-IPLC-HK-BETA2-流量倍率:1.0",
+				"🇭🇰 香港-IPLC-HK-BETA3-流量倍率:1.0",
+				"🇭🇰 香港-IPLC-HK-BETA4-流量倍率:1.0",
+				"🇯🇵 日本-RELAY-JP-TEST1-流量倍率:1.0",
+				"🇺🇸 美国-RELAY-US-TEST1-流量倍率:1.0",
+				"🇪🇪 爱沙尼亚-EE-1-流量倍率:0.1",
+				"🇦🇺 澳大利亚-AU-1-流量倍率:0.5",
+				"🇦🇺 澳大利亚-AU-2-流量倍率:1.0",
+				"🇦🇺 澳大利亚-AU-3-流量倍率:1.0",
+				"🇦🇺 澳大利亚-AU-4-流量倍率:1.0",
+				"🇩🇪 德国-DE-1-流量倍率:1.0",
+				"🇩🇪 德国-DE-2-流量倍率:1.0",
+				"🇩🇪 德国-DE-3-流量倍率:1.0",
+				"🇺🇸 美国-US-1-流量倍率:1.5",
+				"🇺🇸 美国-US-2-流量倍率:1.0",
+				"🇺🇸 美国-US-3-流量倍率:1.0",
+				"🇺🇸 美国-US-4-流量倍率:1.0",
+				"🇺🇸 美国-US-5-流量倍率:1.0",
+				"🇭🇰 香港-HK-1-流量倍率:0.5",
+				"🇭🇰 香港-HK-2-流量倍率:0.5",
+				"🇯🇵 日本-TY-1-流量倍率:1.0",
+				"🇯🇵 日本-TY-2-流量倍率:1.0",
+				"🇯🇵 日本-TY-3-流量倍率:1.0",
+				"🇯🇵 日本-TY-4-流量倍率:1.0",
+				"🇯🇵 日本-OS-1-流量倍率:1.0",
+				"🇯🇵 日本-OS-2-流量倍率:1.0",
+				"🇯🇵 日本-OS-3-流量倍率:1.0",
+				"🇳🇱 荷兰-NL-1-流量倍率:1.0",
+				"🇳🇱 荷兰-NL-2-流量倍率:1.0",
+				"🇳🇱 荷兰-NL-3-流量倍率:1.0",
+				"🇬🇧 英国-UK-1-流量倍率:1.0",
+				"🇹🇼 台湾-TW-1-流量倍率:1.0",
+				"🇹🇼 台湾-TW-2-流量倍率:1.0",
+				"🇺🇸 美国-V6-US3-流量倍率:1.0",
+				"🇳🇱 荷兰-V6-NL1-流量倍率:0.5"
+			]
+		},
+		{
+			"tag": "OpenAI",
+			"type": "selector",
+			"outbounds": [
+				"TaiWan",
+				"Singapore",
+				"Japan",
+				"America",
+				"Others"
+			],
+			"default": "America"
+		},
+		{
+			"tag": "Google",
+			"type": "selector",
+			"outbounds": [
+				"HongKong",
+				"TaiWan",
+				"Singapore",
+				"Japan",
+				"America",
+				"Others"
+			]
+		},
+		{
+			"tag": "Telegram",
+			"type": "selector",
+			"outbounds": [
+				"HongKong",
+				"TaiWan",
+				"Singapore",
+				"Japan",
+				"America",
+				"Others"
+			]
+		},
+		{
+			"tag": "Twitter",
+			"type": "selector",
+			"outbounds": [
+				"HongKong",
+				"TaiWan",
+				"Singapore",
+				"Japan",
+				"America",
+				"Others"
+			]
+		},
+		{
+			"tag": "Facebook",
+			"type": "selector",
+			"outbounds": [
+				"HongKong",
+				"TaiWan",
+				"Singapore",
+				"Japan",
+				"America",
+				"Others"
+			]
+		},
+		{
+			"tag": "BiliBili",
+			"type": "selector",
+			"outbounds": [
+				"direct",
+				"HongKong",
+				"TaiWan"
+			]
+		},
+		{
+			"tag": "Bahamut",
+			"type": "selector",
+			"outbounds": [
+				"TaiWan",
+				"Proxy"
+			]
+		},
+		{
+			"tag": "Spotify",
+			"type": "selector",
+			"outbounds": [
+				"HongKong",
+				"TaiWan",
+				"Singapore",
+				"Japan",
+				"America",
+				"Others"
+			],
+			"default": "America"
+		},
+		{
+			"tag": "TikTok",
+			"type": "selector",
+			"outbounds": [
+				"HongKong",
+				"TaiWan",
+				"Singapore",
+				"Japan",
+				"America"
+			],
+			"default": "Japan"
+		},
+		{
+			"tag": "NETFLIX",
+			"type": "selector",
+			"outbounds": [
+				"HongKong",
+				"TaiWan",
+				"Singapore",
+				"Japan",
+				"America",
+				"Others"
+			]
+		},
+		{
+			"tag": "Disney+",
+			"type": "selector",
+			"outbounds": [
+				"HongKong",
+				"TaiWan",
+				"Singapore",
+				"Japan",
+				"America",
+				"Others"
+			]
+		},
+		{
+			"tag": "Apple",
+			"type": "selector",
+			"outbounds": [
+				"direct",
+				"HongKong",
+				"TaiWan",
+				"Singapore",
+				"Japan",
+				"America",
+				"Others"
+			]
+		},
+		{
+			"tag": "Microsoft",
+			"type": "selector",
+			"outbounds": [
+				"direct",
+				"HongKong",
+				"TaiWan",
+				"Singapore",
+				"Japan",
+				"America",
+				"Others"
+			]
+		},
+		{
+			"tag": "Games",
+			"type": "selector",
+			"outbounds": [
+				"direct",
+				"HongKong",
+				"TaiWan",
+				"Singapore",
+				"Japan",
+				"America",
+				"Others"
+			]
+		},
+		{
+			"tag": "Streaming",
+			"type": "selector",
+			"outbounds": [
+				"HongKong",
+				"TaiWan",
+				"Singapore",
+				"Japan",
+				"America",
+				"Others"
+			]
+		},
+		{
+			"tag": "Global",
+			"type": "selector",
+			"outbounds": [
+				"HongKong",
+				"TaiWan",
+				"Singapore",
+				"Japan",
+				"America",
+				"Others",
+				"direct"
+			]
+		},
+		{
+			"tag": "China",
+			"type": "selector",
+			"outbounds": [
+				"direct",
+				"Proxy"
+			]
+		},
+		{
+			"tag": "AdBlock",
+			"type": "selector",
+			"outbounds": [
+				"block",
+				"direct"
+			]
+		},
+		{
+			"tag": "HongKong",
+			"type": "selector",
+			"outbounds": [
+				"🇭🇰 香港-IPLC-HK-BETA1-流量倍率:1.0",
+				"🇭🇰 香港-IPLC-HK-BETA2-流量倍率:1.0",
+				"🇭🇰 香港-IPLC-HK-BETA3-流量倍率:1.0",
+				"🇭🇰 香港-IPLC-HK-BETA4-流量倍率:1.0",
+				"🇭🇰 香港-HK-1-流量倍率:0.5",
+				"🇭🇰 香港-HK-2-流量倍率:0.5"
+			]
+		},
+		{
+			"tag": "TaiWan",
+			"type": "selector",
+			"outbounds": [
+				"🇹🇼 台湾-TW-1-流量倍率:1.0",
+				"🇹🇼 台湾-TW-2-流量倍率:1.0"
+			]
+		},
+		{
+			"tag": "Singapore",
+			"type": "selector",
+			"outbounds": [
+				"🇸🇬 新加坡-SG-1-流量倍率:1.0",
+				"🇸🇬 新加坡-SG-2-流量倍率:1.0"
+			]
+		},
+		{
+			"tag": "Japan",
+			"type": "selector",
+			"outbounds": [
+				"🇯🇵 日本-RELAY-JP-TEST1-流量倍率:1.0",
+				"🇯🇵 日本-TY-1-流量倍率:1.0",
+				"🇯🇵 日本-TY-2-流量倍率:1.0",
+				"🇯🇵 日本-TY-3-流量倍率:1.0",
+				"🇯🇵 日本-TY-4-流量倍率:1.0",
+				"🇯🇵 日本-OS-1-流量倍率:1.0",
+				"🇯🇵 日本-OS-2-流量倍率:1.0",
+				"🇯🇵 日本-OS-3-流量倍率:1.0"
+			]
+		},
+		{
+			"tag": "America",
+			"type": "selector",
+			"outbounds": [
+				"🇺🇸 美国-RELAY-US-TEST1-流量倍率:1.0",
+				"🇺🇸 美国-US-1-流量倍率:1.5",
+				"🇺🇸 美国-US-2-流量倍率:1.0",
+				"🇺🇸 美国-US-3-流量倍率:1.0",
+				"🇺🇸 美国-US-4-流量倍率:1.0",
+				"🇺🇸 美国-US-5-流量倍率:1.0",
+				"🇺🇸 美国-V6-US3-流量倍率:1.0"
+			]
+		},
+		{
+			"tag": "Others",
+			"type": "selector",
+			"outbounds": [
+				"🇪🇪 爱沙尼亚-EE-1-流量倍率:0.1",
+				"🇦🇺 澳大利亚-AU-1-流量倍率:0.5",
+				"🇦🇺 澳大利亚-AU-2-流量倍率:1.0",
+				"🇦🇺 澳大利亚-AU-3-流量倍率:1.0",
+				"🇦🇺 澳大利亚-AU-4-流量倍率:1.0",
+				"🇩🇪 德国-DE-1-流量倍率:1.0",
+				"🇩🇪 德国-DE-2-流量倍率:1.0",
+				"🇩🇪 德国-DE-3-流量倍率:1.0",
+				"🇳🇱 荷兰-NL-1-流量倍率:1.0",
+				"🇳🇱 荷兰-NL-2-流量倍率:1.0",
+				"🇳🇱 荷兰-NL-3-流量倍率:1.0",
+				"🇬🇧 英国-UK-1-流量倍率:1.0",
+				"🇳🇱 荷兰-V6-NL1-流量倍率:0.5"
+			]
+		},
+		{
+			"tag": "auto",
+			"type": "urltest",
+			"outbounds": [
+				"🇸🇬 新加坡-SG-1-流量倍率:1.0",
+				"🇸🇬 新加坡-SG-2-流量倍率:1.0",
+				"🇭🇰 香港-IPLC-HK-BETA1-流量倍率:1.0",
+				"🇭🇰 香港-IPLC-HK-BETA2-流量倍率:1.0",
+				"🇭🇰 香港-IPLC-HK-BETA3-流量倍率:1.0",
+				"🇭🇰 香港-IPLC-HK-BETA4-流量倍率:1.0",
+				"🇯🇵 日本-RELAY-JP-TEST1-流量倍率:1.0",
+				"🇺🇸 美国-RELAY-US-TEST1-流量倍率:1.0",
+				"🇪🇪 爱沙尼亚-EE-1-流量倍率:0.1",
+				"🇦🇺 澳大利亚-AU-1-流量倍率:0.5",
+				"🇦🇺 澳大利亚-AU-2-流量倍率:1.0",
+				"🇦🇺 澳大利亚-AU-3-流量倍率:1.0",
+				"🇦🇺 澳大利亚-AU-4-流量倍率:1.0",
+				"🇩🇪 德国-DE-1-流量倍率:1.0",
+				"🇩🇪 德国-DE-2-流量倍率:1.0",
+				"🇩🇪 德国-DE-3-流量倍率:1.0",
+				"🇺🇸 美国-US-1-流量倍率:1.5",
+				"🇺🇸 美国-US-2-流量倍率:1.0",
+				"🇺🇸 美国-US-3-流量倍率:1.0",
+				"🇺🇸 美国-US-4-流量倍率:1.0",
+				"🇺🇸 美国-US-5-流量倍率:1.0",
+				"🇭🇰 香港-HK-1-流量倍率:0.5",
+				"🇭🇰 香港-HK-2-流量倍率:0.5",
+				"🇯🇵 日本-TY-1-流量倍率:1.0",
+				"🇯🇵 日本-TY-2-流量倍率:1.0",
+				"🇯🇵 日本-TY-3-流量倍率:1.0",
+				"🇯🇵 日本-TY-4-流量倍率:1.0",
+				"🇯🇵 日本-OS-1-流量倍率:1.0",
+				"🇯🇵 日本-OS-2-流量倍率:1.0",
+				"🇯🇵 日本-OS-3-流量倍率:1.0",
+				"🇳🇱 荷兰-NL-1-流量倍率:1.0",
+				"🇳🇱 荷兰-NL-2-流量倍率:1.0",
+				"🇳🇱 荷兰-NL-3-流量倍率:1.0",
+				"🇬🇧 英国-UK-1-流量倍率:1.0",
+				"🇹🇼 台湾-TW-1-流量倍率:1.0",
+				"🇹🇼 台湾-TW-2-流量倍率:1.0",
+				"🇺🇸 美国-V6-US3-流量倍率:1.0",
+				"🇳🇱 荷兰-V6-NL1-流量倍率:0.5"
+			],
+			"url": "http://www.gstatic.com/generate_204",
+			"interval": "10m",
+			"tolerance": 50
+		},
+		{
+			"type": "direct",
+			"tag": "direct"
+		},
+		{
+			"type": "dns",
+			"tag": "dns-out"
+		},
+		{
+			"type": "block",
+			"tag": "block"
+		},
+		{
+			"tag": "🇸🇬 新加坡-SG-1-流量倍率:1.0",
+			"type": "trojan",
+			"server": "sg-1.victoriamitrepeak.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇸🇬 新加坡-SG-2-流量倍率:1.0",
+			"type": "trojan",
+			"server": "sg-2.victoriamitrepeak.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇭🇰 香港-IPLC-HK-BETA1-流量倍率:1.0",
+			"type": "trojan",
+			"server": "iplc-hk-beta1.trojanwheel.com",
+			"server_port": 5001,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇭🇰 香港-IPLC-HK-BETA2-流量倍率:1.0",
+			"type": "trojan",
+			"server": "iplc-hk-beta2.trojanwheel.com",
+			"server_port": 5002,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇭🇰 香港-IPLC-HK-BETA3-流量倍率:1.0",
+			"type": "trojan",
+			"server": "iplc-hk-beta3.trojanwheel.com",
+			"server_port": 5003,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇭🇰 香港-IPLC-HK-BETA4-流量倍率:1.0",
+			"type": "trojan",
+			"server": "iplc-hk-beta4.trojanwheel.com",
+			"server_port": 5004,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇯🇵 日本-RELAY-JP-TEST1-流量倍率:1.0",
+			"type": "trojan",
+			"server": "relay-jp-test1.trojanwheel.com",
+			"server_port": 5101,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇺🇸 美国-RELAY-US-TEST1-流量倍率:1.0",
+			"type": "trojan",
+			"server": "relay-us-test1.trojanwheel.com",
+			"server_port": 5201,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇪🇪 爱沙尼亚-EE-1-流量倍率:0.1",
+			"type": "trojan",
+			"server": "ee-1.kamediorg.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇦🇺 澳大利亚-AU-1-流量倍率:0.5",
+			"type": "trojan",
+			"server": "au-1.australiastudio.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇦🇺 澳大利亚-AU-2-流量倍率:1.0",
+			"type": "trojan",
+			"server": "au-2.australiastudio.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇦🇺 澳大利亚-AU-3-流量倍率:1.0",
+			"type": "trojan",
+			"server": "au-3.australiastudio.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇦🇺 澳大利亚-AU-4-流量倍率:1.0",
+			"type": "trojan",
+			"server": "au-4.australiastudio.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇩🇪 德国-DE-1-流量倍率:1.0",
+			"type": "trojan",
+			"server": "de-1.topeinstein.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇩🇪 德国-DE-2-流量倍率:1.0",
+			"type": "trojan",
+			"server": "de-2.topeinstein.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇩🇪 德国-DE-3-流量倍率:1.0",
+			"type": "trojan",
+			"server": "de-3.topeinstein.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇺🇸 美国-US-1-流量倍率:1.5",
+			"type": "trojan",
+			"server": "us-1.regentgrandvalley.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇺🇸 美国-US-2-流量倍率:1.0",
+			"type": "trojan",
+			"server": "us-2.regentgrandvalley.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇺🇸 美国-US-3-流量倍率:1.0",
+			"type": "trojan",
+			"server": "us-3.regentgrandvalley.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇺🇸 美国-US-4-流量倍率:1.0",
+			"type": "trojan",
+			"server": "us-4.regentgrandvalley.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇺🇸 美国-US-5-流量倍率:1.0",
+			"type": "trojan",
+			"server": "us-5.regentgrandvalley.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇭🇰 香港-HK-1-流量倍率:0.5",
+			"type": "trojan",
+			"server": "hk-1.victoriamitrepeak.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇭🇰 香港-HK-2-流量倍率:0.5",
+			"type": "trojan",
+			"server": "hk-2.victoriamitrepeak.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇯🇵 日本-TY-1-流量倍率:1.0",
+			"type": "trojan",
+			"server": "ty-1.rise-fuji.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇯🇵 日本-TY-2-流量倍率:1.0",
+			"type": "trojan",
+			"server": "ty-2.rise-fuji.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇯🇵 日本-TY-3-流量倍率:1.0",
+			"type": "trojan",
+			"server": "ty-3.rise-fuji.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇯🇵 日本-TY-4-流量倍率:1.0",
+			"type": "trojan",
+			"server": "ty-4.rise-fuji.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇯🇵 日本-OS-1-流量倍率:1.0",
+			"type": "trojan",
+			"server": "os-1.rise-fuji.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇯🇵 日本-OS-2-流量倍率:1.0",
+			"type": "trojan",
+			"server": "os-2.rise-fuji.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇯🇵 日本-OS-3-流量倍率:1.0",
+			"type": "trojan",
+			"server": "os-3.rise-fuji.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇳🇱 荷兰-NL-1-流量倍率:1.0",
+			"type": "trojan",
+			"server": "nl-1.concert-geb.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇳🇱 荷兰-NL-2-流量倍率:1.0",
+			"type": "trojan",
+			"server": "nl-2.concert-geb.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇳🇱 荷兰-NL-3-流量倍率:1.0",
+			"type": "trojan",
+			"server": "nl-3.concert-geb.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇬🇧 英国-UK-1-流量倍率:1.0",
+			"type": "trojan",
+			"server": "uk-1.fishchipsexpress.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇹🇼 台湾-TW-1-流量倍率:1.0",
+			"type": "trojan",
+			"server": "tw-1.chianginc.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇹🇼 台湾-TW-2-流量倍率:1.0",
+			"type": "trojan",
+			"server": "tw-2.chianginc.com",
+			"server_port": 443,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇺🇸 美国-V6-US3-流量倍率:1.0",
+			"type": "trojan",
+			"server": "v6-us3.nigirocloud.com",
+			"server_port": 4003,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		},
+		{
+			"tag": "🇳🇱 荷兰-V6-NL1-流量倍率:0.5",
+			"type": "trojan",
+			"server": "v6-nl1.nigirocloud.com",
+			"server_port": 4003,
+			"password": "bAp5cuM6VAlY773ycr",
+			"tls": {
+				"enabled": true,
+				"insecure": false
+			}
+		}
+	],
+	"route": {
+		"auto_detect_interface": true,
+		"final": "Proxy",
+		"rules": [
+			{
+				"type": "logical",
+				"mode": "or",
+				"rules": [
+					{
+						"port": 53
+					},
+					{
+						"protocol": "dns"
+					}
+				],
+				"outbound": "dns-out"
+			},
+			{
+				"rule_set": "geosite-anti-ad",
+				"outbound": "AdBlock"
+			},
+			{
+				"rule_set": "geosite-category-ads-all",
+				"outbound": "AdBlock"
+			},
+			{
+				"clash_mode": "direct",
+				"outbound": "direct"
+			},
+			{
+				"clash_mode": "global",
+				"outbound": "Proxy"
+			},
+			{
+				"domain": [
+					"clash.razord.top",
+					"yacd.metacubex.one",
+					"yacd.haishan.me",
+					"d.metacubex.one"
+				],
+				"outbound": "direct"
+			},
+			{
+				"rule_set": "geosite-openai",
+				"outbound": "OpenAI"
+			},
+			{
+				"rule_set": [
+					"geosite-youtube",
+					"geoip-google",
+					"geosite-google",
+					"geosite-github"
+				],
+				"outbound": "Google"
+			},
+			{
+				"rule_set": [
+					"geoip-telegram",
+					"geosite-telegram"
+				],
+				"outbound": "Telegram"
+			},
+			{
+				"rule_set": [
+					"geoip-twitter",
+					"geosite-twitter"
+				],
+				"outbound": "Twitter"
+			},
+			{
+				"rule_set": [
+					"geoip-facebook",
+					"geosite-facebook"
+				],
+				"outbound": "Facebook"
+			},
+			{
+				"rule_set": [
+					"geoip-bilibili",
+					"geosite-bilibili"
+				],
+				"outbound": "BiliBili"
+			},
+			{
+				"rule_set": "geosite-bahamut",
+				"outbound": "Bahamut"
+			},
+			{
+				"rule_set": "geosite-spotify",
+				"outbound": "Spotify"
+			},
+			{
+				"rule_set": "geosite-tiktok",
+				"outbound": "TikTok"
+			},
+			{
+				"rule_set": [
+					"geoip-netflix",
+					"geosite-netflix"
+				],
+				"outbound": "NETFLIX"
+			},
+			{
+				"rule_set": "geosite-disney",
+				"outbound": "Disney+"
+			},
+			{
+				"rule_set": [
+					"geoip-apple",
+					"geosite-apple",
+					"geosite-amazon"
+				],
+				"outbound": "Apple"
+			},
+			{
+				"rule_set": "geosite-microsoft",
+				"outbound": "Microsoft"
+			},
+			{
+				"rule_set": "geosite-category-games",
+				"outbound": "Games"
+			},
+			{
+				"rule_set": [
+					"geosite-hbo",
+					"geosite-primevideo"
+				],
+				"outbound": "Streaming"
+			},
+			{
+				"rule_set": "geosite-geolocation-!cn",
+				"outbound": "Global"
+			},
+			{
+				"rule_set": "geosite-private",
+				"outbound": "direct"
+			},
+			{
+				"ip_is_private": true,
+				"outbound": "direct"
+			},
+			{
+				"rule_set": [
+					"geoip-cn",
+					"geosite-cn"
+				],
+				"outbound": "China"
+			}
+		],
+		"rule_set": [
+			{
+				"tag": "geoip-google",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/google.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geoip-telegram",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/telegram.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geoip-twitter",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/twitter.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geoip-facebook",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/facebook.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geoip-netflix",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/netflix.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geoip-apple",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo-lite/geoip/apple.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geoip-bilibili",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo-lite/geoip/bilibili.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geoip-cn",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-private",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/private.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-openai",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/openai.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-youtube",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/youtube.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-google",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/google.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-github",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/github.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-telegram",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/telegram.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-twitter",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/twitter.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-facebook",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/facebook.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-bilibili",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/bilibili.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-bahamut",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/bahamut.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-spotify",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/spotify.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-tiktok",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/tiktok.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-netflix",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/netflix.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-disney",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/disney.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-apple",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/apple.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-amazon",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/amazon.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-microsoft",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/microsoft.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-category-games",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-games.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-hbo",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/hbo.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-primevideo",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/primevideo.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-cn",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-geolocation-!cn",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-anti-ad",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://github.com/srk24/profile/raw/master/sing/ruleset/anti_ad.srs",
+				"download_detour": "direct"
+			},
+			{
+				"tag": "geosite-category-ads-all",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ads-all.srs",
+				"download_detour": "direct"
+			}
+		]
+	}
+}
