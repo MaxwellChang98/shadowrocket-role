@@ -1,0 +1,6 @@
+#!name=包租婆管家
+#!desc=包租婆管家
+[Script]
+亲邻会员=type=http-response,pattern=^https:\/\/bzp\.iyunmu\.com\/bzp_backup\/v1\/client\/check_error_pay\/?$,requires-body=1,script-path=https://raw.githubusercontent.com/JackZhangMax/shadowrocket-role/main/js/bzpgj.js
+[MITM]
+hostname= %APPEND% bzp.iyunmu.com/
