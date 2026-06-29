@@ -5,6 +5,8 @@ DOMAIN-SUFFIX,platinumai.net
 DOMAIN-SUFFIX,studio3t.com
 DOMAIN-SUFFIX,picsum.photos
 DOMAIN-SUFFIX,mediaservices.cdn-apple.com
+PROCESS-NAME,tailscale,DIRECT
+PROCESS-NAME,tailscaled,DIRECT
 SRC-PORT,3478
 SRC-PORT,3479
 SRC-PORT,3480
