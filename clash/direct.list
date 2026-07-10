@@ -8,6 +8,7 @@ DOMAIN-SUFFIX,mediaservices.cdn-apple.com
 DOMAIN-SUFFIX,microsoft.com
 PROCESS-NAME,tailscale,DIRECT
 PROCESS-NAME,tailscaled,DIRECT
+DOMAIN-KEYWORD,speedtest
 SRC-PORT,3478
 SRC-PORT,3479
 SRC-PORT,3480
