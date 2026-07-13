@@ -6,6 +6,7 @@ DOMAIN-SUFFIX,studio3t.com
 DOMAIN-SUFFIX,picsum.photos
 DOMAIN-SUFFIX,mediaservices.cdn-apple.com
 DOMAIN-SUFFIX,microsoft.com
+DOMAIN-SUFFIX,apple.com
 PROCESS-NAME,tailscale,DIRECT
 PROCESS-NAME,tailscaled,DIRECT
 DOMAIN-KEYWORD,speedtest
