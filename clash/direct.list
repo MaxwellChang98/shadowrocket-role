@@ -10,6 +10,7 @@ DOMAIN-SUFFIX,apple.com
 PROCESS-NAME,tailscale,DIRECT
 PROCESS-NAME,tailscaled,DIRECT
 DOMAIN-KEYWORD,speedtest
+DOMAIN-SUFFIX,downloads.marketplace.jetbrains.com
 SRC-PORT,3478
 SRC-PORT,3479
 SRC-PORT,3480
