@@ -11,17 +11,17 @@ dns:
   enable: true
   listen: 127.0.0.1:8853
   ipv6: false
-  enhanced-mode: fake-ip
+  enhanced-mode: redir-host
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
   fallback:
-    - https://dns.google/dns-query
+    - 1.1.1.1
     - https://dns.cloudflare.com/dns-query
-    - tls://1.0.0.1:853
-    - tls://dns.google:853
+    - 8.8.8.8
+    - https://dns.google/dns-query
   fallback-filter:
-    geoip: false
+    geoip: true
     ipcidr:
       - 240.0.0.0/4
       - 0.0.0.0/32
@@ -59,6 +59,28 @@ dns:
       - +.googletagmanager.com
       - +.googletagservices.com
       - +.updates.cdn-apple.com
+    geoip-code: CN
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*"
+    - +.lan
+    - +.local
+    - time.*.com
+    - ntp.*.com
+    - +.market.xiaomi.com
+    - ipv6.msftconnecttest.com
+  use-hosts: false
+  use-system-hosts: false
+  respect-rules: false
+  default-nameserver:
+    - 223.5.5.5
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  direct-nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  fake-ip-filter-mode: blacklist
 {% endif %}
 {% if local.clash.new_field_name == "true" %}
 proxies: ~
