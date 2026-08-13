@@ -58,7 +58,9 @@ dns:
       - +.googlesyndication.com
       - +.googletagmanager.com
       - +.googletagservices.com
-      - +.updates.cdn-apple.com
+      - +.cdn-apple.com
+      - +.iosapps.itunes.apple.com
+      - +.swcdn.apple.com
     geoip-code: CN
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
