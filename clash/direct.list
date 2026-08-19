@@ -11,6 +11,7 @@ PROCESS-NAME,tailscale,DIRECT
 PROCESS-NAME,tailscaled,DIRECT
 DOMAIN-KEYWORD,speedtest
 DOMAIN-SUFFIX,downloads.marketplace.jetbrains.com
+IP-CIDR,12.0.0.0/8
 SRC-PORT,3478
 SRC-PORT,3479
 SRC-PORT,3480
