@@ -13,6 +13,8 @@ dns:
   ipv6: false
   enhanced-mode: redir-host
   nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
   fallback:
@@ -76,10 +78,15 @@ dns:
   respect-rules: false
   default-nameserver:
     - 223.5.5.5
+    - 119.29.29.29
   proxy-server-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
   direct-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
   fake-ip-filter-mode: blacklist
