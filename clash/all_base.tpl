@@ -15,55 +15,23 @@ dns:
   nameserver:
     - 223.5.5.5
     - 119.29.29.29
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
   fallback:
-    - 1.1.1.1
     - https://dns.cloudflare.com/dns-query
-    - 8.8.8.8
     - https://dns.google/dns-query
   fallback-filter:
     geoip: true
+    geoip-code: CN
     ipcidr:
       - 240.0.0.0/4
       - 0.0.0.0/32
       - 127.0.0.1/32
-    domain:
-      - +.facebook.com
-      - +.twitter.com
-      - +.google.com
-      - +.googleapis.com
-      - +.google.cn
-      - +.googleapis.cn
-      - +.xn--ngstr-lra8j.com
-      - +.googlevideo.com
-      - +.gvt1.com
-      - +.gmail.com
-      - +.youtube.com
-      - +.youtu.be
-      - +.gvt0.com
-      - +.gvt2.com
-      - +.gvt3.com
-      - +.gstatic.com
-      - +.265.com
-      - +.2mdn.net
-      - +.app-measurement.com
-      - +.c.admob.com
-      - +.clickserve.dartsearch.net
-      - +.crl.pki.goog
-      - +.doubleclick.net
-      - +.firebase-settings.crashlytics.com
-      - +.google-analytics.com
-      - +.googleadservices.com
-      - +.googleanalytics.com
-      - +.googleoptimize.com
-      - +.googlesyndication.com
-      - +.googletagmanager.com
-      - +.googletagservices.com
-      - +.cdn-apple.com
-      - +.iosapps.itunes.apple.com
-      - +.swcdn.apple.com
-    geoip-code: CN
+  nameserver-policy:
+    'geosite:cn,private':
+      - 223.5.5.5
+      - 119.29.29.29
+    'geosite:geolocation-!cn':
+      - https://dns.cloudflare.com/dns-query
+      - https://dns.google/dns-query
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - "*"
@@ -73,7 +41,7 @@ dns:
     - ntp.*.com
     - +.market.xiaomi.com
     - ipv6.msftconnecttest.com
-  use-hosts: false
+  use-hosts: true
   use-system-hosts: false
   respect-rules: false
   default-nameserver:
@@ -82,13 +50,9 @@ dns:
   proxy-server-nameserver:
     - 223.5.5.5
     - 119.29.29.29
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
   direct-nameserver:
     - 223.5.5.5
     - 119.29.29.29
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
   fake-ip-filter-mode: blacklist
 {% endif %}
 {% if local.clash.new_field_name == "true" %}
