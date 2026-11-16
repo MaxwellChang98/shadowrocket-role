@@ -15,7 +15,6 @@ dns:
   nameserver:
     - 223.5.5.5
     - 119.29.29.29
-    - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
   fallback:
     - 1.1.1.1
@@ -32,10 +31,9 @@ dns:
       - 0.0.0.0/32
       - 127.0.0.1/32
   nameserver-policy:
-    'geosite:cn,private':
+    'geosite:cn,private,+.3.cn':
       - 223.5.5.5
       - 119.29.29.29
-      - https://doh.pub/dns-query
       - https://dns.alidns.com/dns-query
     'geosite:geolocation-!cn':
       - https://dns.cloudflare.com/dns-query
@@ -60,12 +58,10 @@ dns:
   proxy-server-nameserver:
     - 223.5.5.5
     - 119.29.29.29
-    - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
   direct-nameserver:
     - 223.5.5.5
     - 119.29.29.29
-    - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
   fake-ip-filter-mode: blacklist
 {% endif %}
