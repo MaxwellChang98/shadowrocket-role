@@ -15,9 +15,15 @@ dns:
   nameserver:
     - 223.5.5.5
     - 119.29.29.29
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
   fallback:
-    - https://1.1.1.1/dns-query
-    - https://8.8.8.8/dns-query
+    - 1.1.1.1
+    - 8.8.8.8
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
+    - tls://1.1.1.1:853
+    - tls://8.8.8.8:853
   fallback-filter:
     geoip: true
     geoip-code: CN
@@ -29,9 +35,13 @@ dns:
     'geosite:cn,private':
       - 223.5.5.5
       - 119.29.29.29
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
     'geosite:geolocation-!cn':
-      - https://1.1.1.1/dns-query
-      - https://8.8.8.8/dns-query
+      - https://dns.cloudflare.com/dns-query
+      - https://dns.google/dns-query
+      - tls://1.1.1.1:853
+      - tls://8.8.8.8:853
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - "*"
@@ -50,9 +60,13 @@ dns:
   proxy-server-nameserver:
     - 223.5.5.5
     - 119.29.29.29
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
   direct-nameserver:
     - 223.5.5.5
     - 119.29.29.29
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
   fake-ip-filter-mode: blacklist
 {% endif %}
 {% if local.clash.new_field_name == "true" %}
