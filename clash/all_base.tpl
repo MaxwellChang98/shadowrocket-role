@@ -31,7 +31,7 @@ dns:
       - 0.0.0.0/32
       - 127.0.0.1/32
   nameserver-policy:
-    'geosite:cn,private,+.3.cn':
+    'geosite:cn,private':
       - 223.5.5.5
       - 119.29.29.29
       - https://dns.alidns.com/dns-query
@@ -40,6 +40,10 @@ dns:
       - https://dns.google/dns-query
       - tls://1.1.1.1:853
       - tls://8.8.8.8:853
+    '+.3.cn':
+      - 223.5.5.5
+      - 119.29.29.29
+      - https://dns.alidns.com/dns-query
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - "*"
