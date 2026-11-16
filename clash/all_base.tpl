@@ -16,8 +16,8 @@ dns:
     - 223.5.5.5
     - 119.29.29.29
   fallback:
-    - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
   fallback-filter:
     geoip: true
     geoip-code: CN
@@ -30,8 +30,8 @@ dns:
       - 223.5.5.5
       - 119.29.29.29
     'geosite:geolocation-!cn':
-      - https://dns.cloudflare.com/dns-query
-      - https://dns.google/dns-query
+      - https://1.1.1.1/dns-query
+      - https://8.8.8.8/dns-query
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - "*"
