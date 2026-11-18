@@ -3,3 +3,5 @@ DOMAIN-KEYWORD,chatgpt
 DOMAIN-SUFFIX,oaistatic.com
 DOMAIN-SUFFIX,oaiusercontent.com
 DOMAIN-SUFFIX,sora.com
+PROCESS-NAME,codex
+PROCESS-NAME,ChatGPT
