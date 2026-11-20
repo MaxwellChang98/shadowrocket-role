@@ -17,8 +17,6 @@ dns:
     - 119.29.29.29
     - https://dns.alidns.com/dns-query
   fallback:
-    - 1.1.1.1
-    - 8.8.8.8
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
   fallback-filter:
@@ -34,8 +32,6 @@ dns:
       - 119.29.29.29
       - https://dns.alidns.com/dns-query
     'geosite:geolocation-!cn':
-      - 1.1.1.1
-      - 8.8.8.8
       - https://dns.cloudflare.com/dns-query
       - https://dns.google/dns-query
     '+.3.cn':
