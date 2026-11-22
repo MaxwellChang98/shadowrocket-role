@@ -12,57 +12,63 @@ dns:
   listen: 127.0.0.1:8853
   ipv6: false
   enhanced-mode: redir-host
-  nameserver:
+  prefer-h3: false
+  use-hosts: true
+  use-system-hosts: false
+  respect-rules: true
+  default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
-    - https://dns.alidns.com/dns-query
+  proxy-server-nameserver:
+    - https://223.5.5.5/dns-query
+    - https://doh.pub/dns-query
+  nameserver-policy:
+    'geosite:cn,private':
+      - https://223.5.5.5/dns-query
+      - https://doh.pub/dns-query
+    'geosite:geolocation-!cn':
+      - https://1.1.1.1/dns-query
+      - https://8.8.8.8/dns-query
+    '+.3.cn':
+      - https://223.5.5.5/dns-query
+      - https://doh.pub/dns-query
+  nameserver:
+    - https://223.5.5.5/dns-query
+    - https://doh.pub/dns-query
   fallback:
-    - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
   fallback-filter:
     geoip: true
     geoip-code: CN
     ipcidr:
       - 240.0.0.0/4
-      - 0.0.0.0/32
-      - 127.0.0.1/32
-  nameserver-policy:
-    'geosite:cn,private':
-      - 223.5.5.5
-      - 119.29.29.29
-      - https://dns.alidns.com/dns-query
-    'geosite:geolocation-!cn':
-      - https://dns.cloudflare.com/dns-query
-      - https://dns.google/dns-query
-    '+.3.cn':
-      - 223.5.5.5
-      - 119.29.29.29
-      - https://dns.alidns.com/dns-query
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - "*"
-    - +.lan
-    - +.local
-    - time.*.com
-    - ntp.*.com
-    - +.market.xiaomi.com
-    - ipv6.msftconnecttest.com
-  use-hosts: true
-  use-system-hosts: false
-  respect-rules: false
-  default-nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
-  proxy-server-nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
-    - https://dns.alidns.com/dns-query
-  direct-nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
-    - https://dns.alidns.com/dns-query
-  fake-ip-filter-mode: blacklist
 {% endif %}
+
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  force-domain:
+    - "+.netflix.com"
+    - "+.nflxvideo.net"
+    - "+.amazonaws.com"
+    - "+.media.dssott.com"
+  skip-domain:
+    - "Mijia Cloud"
+    - "dlg.io.mi.com"
+    - "+.oray.com"
+    - "+.sunlogin.net"
+    - "+.push.apple.com"
 {% if local.clash.new_field_name == "true" %}
 proxies: ~
 proxy-groups: ~
