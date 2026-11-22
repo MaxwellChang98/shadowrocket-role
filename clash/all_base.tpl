@@ -27,8 +27,8 @@ dns:
       - https://223.5.5.5/dns-query
       - https://doh.pub/dns-query
     'geosite:geolocation-!cn':
-      - https://1.1.1.1/dns-query
-      - https://8.8.8.8/dns-query
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
     '+.3.cn':
       - https://223.5.5.5/dns-query
       - https://doh.pub/dns-query
@@ -36,8 +36,8 @@ dns:
     - https://223.5.5.5/dns-query
     - https://doh.pub/dns-query
   fallback:
-    - https://1.1.1.1/dns-query
-    - https://8.8.8.8/dns-query
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
   fallback-filter:
     geoip: true
     geoip-code: CN
