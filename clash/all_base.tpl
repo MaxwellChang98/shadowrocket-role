@@ -11,7 +11,60 @@ dns:
   enable: true
   listen: 127.0.0.1:8853
   ipv6: false
-  enhanced-mode: redir-host
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "*.local"
+    - "*.localdomain"
+    - "*.home.arpa"
+    - "*time*.apple.com"
+    - "time.*.com"
+    - "time.*.gov"
+    - "time.*.edu.cn"
+    - "time.*.apple.com"
+    - "time1.*.com"
+    - "time2.*.com"
+    - "time3.*.com"
+    - "time4.*.com"
+    - "time5.*.com"
+    - "time6.*.com"
+    - "time7.*.com"
+    - "ntp.*.com"
+    - "ntp1.*.com"
+    - "ntp2.*.com"
+    - "ntp3.*.com"
+    - "ntp4.*.com"
+    - "ntp5.*.com"
+    - "ntp6.*.com"
+    - "ntp7.*.com"
+    - "*.time.edu.cn"
+    - "*.ntp.org.cn"
+    - "+.pool.ntp.org"
+    - "msftconnecttest.com"
+    - "*.msftconnecttest.com"
+    - "msftncsi.com"
+    - "*.msftncsi.com"
+    - "connectivitycheck.gstatic.com"
+    - "captive.apple.com"
+    - "detectportal.firefox.com"
+    - "lens.l.google.com"
+    - "*.stun.*.*"
+    - "*.stun.*.*.*"
+    - "+.stun.*.*"
+    - "+.stun.*.*.*"
+    - "+.stun.*.*.*.*"
+    - "heartbeat.belkin.com"
+    - "*.linksys.com"
+    - "*.linksyssmartwifi.com"
+    - "*.router.asus.com"
+    - "+.oray.com"
+    - "+.sunlogin.net"
+    - "mesu.apple.com"
+    - "swscan.apple.com"
+    - "swdist.apple.com"
+    - "+.push.apple.com"
+    - "+.market.xiaomi.com"
   prefer-h3: false
   use-hosts: true
   use-system-hosts: false
@@ -27,8 +80,8 @@ dns:
       - https://223.5.5.5/dns-query
       - https://doh.pub/dns-query
     'geosite:geolocation-!cn':
-    - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
+      - https://dns.cloudflare.com/dns-query
+      - https://dns.google/dns-query
     '+.3.cn':
       - https://223.5.5.5/dns-query
       - https://doh.pub/dns-query
