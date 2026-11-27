@@ -5,8 +5,8 @@ socks-port: {{ default(global.clash.socks_port, "7891") }}
 allow-lan: {{ default(global.clash.allow_lan, "true") }}
 mode: rule
 log-level: {{ default(global.clash.log_level, "info") }}
-external-controller: :9090
-{% if default(request.clash.dns, "") == "1" %}
+external-controller: 127.0.0.1:9090
+{% if default(request.clash.dns, "1") == "1" %}
 dns:
   enable: true
   listen: 127.0.0.1:8853
@@ -18,7 +18,8 @@ dns:
     - "*.local"
     - "*.localdomain"
     - "*.home.arpa"
-    - "*time*.apple.com"
+    - "time.apple.com"
+    - "*.time.apple.com"
     - "time.*.com"
     - "time.*.gov"
     - "time.*.edu.cn"
@@ -423,7 +424,7 @@ enhanced-mode-by-rule = true
                 "geosite": [
                     "category-ads-all"
                 ],
-                "server": "dns_block",
+                "server": "block",
                 "disable_cache": true
             },
             {
